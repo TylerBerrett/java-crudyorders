@@ -21,9 +21,10 @@ public class Orders {
 
     public Orders(){}
 
-    public Orders(double ordamount, double advanceamount, String orderdescription) {
+    public Orders(double ordamount, double advanceamount, Customers customer, String orderdescription) {
         this.ordamount = ordamount;
         this.advanceamount = advanceamount;
+        this.customers = customer;
         this.orderdescription = orderdescription;
     }
 
@@ -80,4 +81,11 @@ public class Orders {
     public void setPayments(List<Payments> payments) {
         this.payments = payments;
     }
+
+    public void addPayments(Payments payment){
+        payments.add(payment);
+        payment.getOrders().add(this);
+    }
+
+
 }

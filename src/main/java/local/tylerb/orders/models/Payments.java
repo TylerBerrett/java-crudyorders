@@ -3,6 +3,8 @@ package local.tylerb.orders.models;
 import org.springframework.data.repository.cdi.Eager;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "payments")
@@ -15,6 +17,9 @@ public class Payments {
 
     @Column(nullable = false)
     private String type;
+
+    @ManyToMany(mappedBy = "payments")
+    private List<Orders> orders = new ArrayList<>();
 
     public Payments() {
     }
@@ -37,5 +42,13 @@ public class Payments {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
     }
 }
