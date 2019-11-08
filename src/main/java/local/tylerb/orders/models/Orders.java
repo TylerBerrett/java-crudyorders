@@ -19,6 +19,12 @@ public class Orders {
     private double advanceamount;
     private String orderdescription;
 
+    @Transient
+    public boolean hasOrdamount = false;
+    @Transient
+    public boolean hasAdvanceamount = false;
+
+
     public Orders(){}
 
     public Orders(double ordamount, double advanceamount, Customers customer, String orderdescription) {
@@ -30,6 +36,7 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "custcode", nullable = false)
+    @JsonIgnoreProperties({"orders", "agents"})
     private Customers customers;
 
     @ManyToMany
@@ -55,6 +62,7 @@ public class Orders {
     }
 
     public void setOrdamount(double ordamount) {
+        hasOrdamount = true;
         this.ordamount = ordamount;
     }
 
@@ -63,6 +71,7 @@ public class Orders {
     }
 
     public void setAdvanceamount(double advanceamount) {
+        hasAdvanceamount = true;
         this.advanceamount = advanceamount;
     }
 
@@ -76,6 +85,14 @@ public class Orders {
 
     public List<Payments> getPayments() {
         return payments;
+    }
+
+    public Customers getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Customers customers) {
+        this.customers = customers;
     }
 
     public void setPayments(List<Payments> payments) {

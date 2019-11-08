@@ -116,7 +116,7 @@ public class CustomerServiceImpl implements CustomerService {
             current.setPhone(customer.getPhone());
         }
         if (customer.getAgents() != null){
-            current.setAgents(current.getAgents());
+            current.setAgents(customer.getAgents());
         }
 
         return customersRepo.save(current);
