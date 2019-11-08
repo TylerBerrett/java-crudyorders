@@ -13,8 +13,10 @@ public interface CustomerService {
 
     List<Customers> findCustomerByLikeName(String name);
 
-    /* GET /customers/namelike/{likename} - Returns all customers and their orders with a customer name containing the given substring
-    GET /agents/agent/{id} - Returns the agent and their customers with the given agent id
-    GET /orders/order/{id} - Returns the order and its customer with the given order number*/
+    Customers add(Customers customer);
+
+    Customers put(Customers customer, long id);
+
+    void delete(long id);
 
 }

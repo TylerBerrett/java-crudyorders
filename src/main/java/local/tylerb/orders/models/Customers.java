@@ -27,6 +27,15 @@ public class Customers {
     private double outstandingamt;
     private String phone;
 
+    @Transient
+    public boolean hasOpen = false;
+    @Transient
+    public boolean hasReceive = false;
+    @Transient
+    public boolean hasPayment = false;
+    @Transient
+    public boolean hasOutstanding = false;
+
     @ManyToOne
     @JoinColumn(name = "agentcode",
             nullable = false)
@@ -40,7 +49,7 @@ public class Customers {
 
     public Customers(){}
 
-    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, Agents agent) {
+    public Customers(String custname, String custcity, String workingarea, String custcountry, String grade, double openingamt, double receiveamt, double paymentamt, double outstandingamt, String phone, Agents agents) {
         this.custname = custname;
         this.custcity = custcity;
         this.workingarea = workingarea;
@@ -51,7 +60,7 @@ public class Customers {
         this.paymentamt = paymentamt;
         this.outstandingamt = outstandingamt;
         this.phone = phone;
-        this.agents = agent;
+        this.agents = agents;
     }
 
     public long getCustcode() {
@@ -107,6 +116,7 @@ public class Customers {
     }
 
     public void setOpeningamt(double openingamt) {
+        hasOpen = true;
         this.openingamt = openingamt;
     }
 
@@ -115,6 +125,7 @@ public class Customers {
     }
 
     public void setReceiveamt(double receiveamt) {
+        hasReceive = true;
         this.receiveamt = receiveamt;
     }
 
@@ -123,6 +134,7 @@ public class Customers {
     }
 
     public void setPaymentamt(double paymentamt) {
+        hasPayment = true;
         this.paymentamt = paymentamt;
     }
 
@@ -131,6 +143,7 @@ public class Customers {
     }
 
     public void setOutstandingamt(double outstandingamt) {
+        hasOutstanding = true;
         this.outstandingamt = outstandingamt;
     }
 
@@ -142,7 +155,7 @@ public class Customers {
         this.phone = phone;
     }
 
-    // do I want to get agents
+    // do I want to get agents. Yes
     public Agents getAgents() {
         return agents;
     }
